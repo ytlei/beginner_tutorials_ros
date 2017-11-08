@@ -53,9 +53,9 @@ class talkerClass {
       *   @param  response string to client
       *   @return true if update is successful, false otherwise
      */
-     bool updateTalkerName(
-         beginner_tutorials::talkerService::Request &,
-         beginner_tutorials::talkerService::Response &);
+//     bool updateTalkerName(
+//         beginner_tutorials::talkerService::Request &,
+//         beginner_tutorials::talkerService::Response &);
 
      /**
       *   @brief  Get name to include in message published by Talker

@@ -24,3 +24,11 @@ add_dependencies(talker beginner_tutorials_generate_messages_cpp)
 add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
 add_dependencies(listener beginner_tutorials_generate_messages_cpp)
+
+add_executable(talkerClass src/talkerClass.cpp)
+target_link_libraries(talkerClass ${catkin_LIBRARIES})
+add_dependencies(talkerClass beginner_tutorials_generate_messages_cpp)
+
+add_executable(listenerClass src/listenerClass.cpp)
+target_link_libraries(listenerClass ${catkin_LIBRARIES})
+add_dependencies(listenerClass beginner_tutorials_generate_messages_cpp)

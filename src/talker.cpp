@@ -47,18 +47,21 @@ int main(int argc, char **argv) {
   if (argc > 1) {
         ROS_DEBUG_STREAM("argv is " << argv[1]);
         freq = atoi(argv[1]);
+        if (freq < 0) {
+        	 ROS_ERROR_STREAM("The Input Frequency is negative");
+        }
   }
 
-  ROS_INFO_STREAM("set freqency to " << freq << "Hz");
+  ROS_WARN_STREAM("set freqency to " << freq << "Hz");
 
   ros::NodeHandle n;
 
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
 
-  talkerClass talker;
-  // Register service
-  ros::ServiceServer server = n.advertiseService("talkerService", &talkerClass::updateTalkerName, &talker);
-
+//  talkerClass talker;
+//  // Register service
+//  ros::ServiceServer server = n.advertiseService("talkerService", &talkerClass::updateTalkerName, &talker);
+//
 
   ros::Rate loop_rate(freq);
 
@@ -72,7 +75,7 @@ int main(int argc, char **argv) {
     std_msgs::String msg;
 
     std::stringstream ss;
-    ss << "hello world by ytlei" << count << " talk:" << talker.getName();
+    ss << "hello world by ytlei" << count; //<< " talk:" << talker.getName();
     msg.data = ss.str();
     ROS_DEBUG_STREAM("Publish: " << msg.data.c_str());
 

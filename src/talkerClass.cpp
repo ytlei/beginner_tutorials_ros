@@ -36,12 +36,12 @@
 #include "talkerClass.hpp"
 
 
-bool talkerClass::updateTalkerName(
-        beginner_tutorials::talkerService::Request &req,
-        beginner_tutorials::talkerService::Response &resp) {
-    name = req.name;
-    resp.resp = "OK";
-    ROS_INFO_STREAM("Update talker name to [" << name << "]");
-    ROS_INFO_STREAM("Sending response " << resp.resp << " to client");
-    return true;
-}
+//bool talkerClass::updateTalkerName(
+//        beginner_tutorials::talkerService::Request &req,
+//        beginner_tutorials::talkerService::Response &resp) {
+//    name = req.name;
+//    resp.resp = "OK";
+//    ROS_INFO_STREAM("Update talker name to [" << name << "]");
+//    ROS_INFO_STREAM("Sending response " << resp.resp << " to client");
+//    return true;
+//}
