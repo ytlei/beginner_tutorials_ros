@@ -1,8 +1,27 @@
-/************************************************************
- *                                                          *
- * Copyright (C) 2017 by Yi-ting Lei                        *
- *                                                          *
- ***********************************************************/
+/********************************************************************
+ *   MIT License
+ *
+ *   Copyright (c) 2017 Yi-ting Lei
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ ********************************************************************/
+
 
 /**
  *   @file	talker.cpp
@@ -15,6 +34,8 @@
 #include <sstream>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include "talkerClass.hpp"
+//#include "beginner_tutorials/talkerService.h"
 
 
 int main(int argc, char **argv) {
@@ -22,7 +43,7 @@ int main(int argc, char **argv) {
   int freq = 10;
 
   ros::init(argc, argv, "talker");
-  // get freq from input argument
+  // set freq from input argument
   if (argc > 1) {
         ROS_DEBUG_STREAM("argv is " << argv[1]);
         freq = atoi(argv[1]);
@@ -34,12 +55,12 @@ int main(int argc, char **argv) {
 
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
 
-  Talker talker;
+  talkerClass talker;
   // Register service
-  ros::ServiceServer server = n.advertiseService("talkerService", &Talker::updateTalkerName, &talker);
+  ros::ServiceServer server = n.advertiseService("talkerService", &talkerClass::updateTalkerName, &talker);
 
 
-  ros::Rate loop_rate(10);
+  ros::Rate loop_rate(freq);
 
   /**
    * A count of how many messages we have sent. This is used to create

@@ -38,7 +38,7 @@
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <string>
-#include "beginner_tutorials/talkerService.h"
+//#include "beginner_tutorials/talkerService.h"
 
 
 class talkerClass {
