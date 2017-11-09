@@ -1,15 +1,38 @@
-/************************************************************
- *                                                          *
- * Copyright (C) 2017 by Yi-ting Lei                        *
- *                                                          *
- ***********************************************************/
+/********************************************************************
+ *   MIT License
+ *
+ *   Copyright (c) 2017 Yi-ting Lei
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ ********************************************************************/
 
 /**
- *   @file	listener.cpp
- *   @brief  	demo for ROS listener node
+ *  @file listener.cpp
+ *  @brief File of main function for listener node
  *
- *   @author	Yi-ting Lei
- *   @date	2017/10/30
+ *  This file contains the main program of listener node subscribing to chatter topic.
+ *
+ *  This program demonstrate the concept of subscribing topic in ROS.
+ *
+ *
+ *  @author Yi-ting Lei
+ *  @date   11/07/2017
  */
 
 #include "ros/ros.h"
@@ -28,11 +51,6 @@ int main(int argc, char **argv) {
 	bool timeoutCounter;
 	ros::init(argc, argv, "listener");
 
-	/**
-	 * NodeHandle is the main access point to communications with the ROS system.
-	 * The first NodeHandle constructed will fully initialize this node, and the last
-	 * NodeHandle destructed will close down the node.
-	 */
 	ros::NodeHandle n;
 
 	// Register client with the master
