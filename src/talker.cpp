@@ -22,7 +22,6 @@
  *  SOFTWARE.
  ********************************************************************/
 
-
 /**
  *   @file	talker.cpp
  *   @brief  	this is the talker for ROS tutorial
@@ -35,61 +34,58 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "talkerClass.hpp"
-//#include "beginner_tutorials/talkerService.h"
-
+#include "beginner_tutorials/talkerService.h"
 
 int main(int argc, char **argv) {
-  // default freq: 10 Hz
-  int freq = 10;
+	// default freq: 10 Hz
+	int freq = 10;
 
-  ros::init(argc, argv, "talker");
-  // set freq from input argument
-  if (argc > 1) {
-        ROS_DEBUG_STREAM("argv is " << argv[1]);
-        freq = atoi(argv[1]);
-        if (freq < 0) {
-        	 ROS_ERROR_STREAM("The Input Frequency is negative");
-        }
-  }
+	ros::init(argc, argv, "talker");
+	// set freq from input argument
+	if (argc > 1) {
+		ROS_DEBUG_STREAM("argv is " << argv[1]);
+		freq = atoi(argv[1]);
+		if (freq < 0) {
+			ROS_ERROR_STREAM("The Input Frequency is negative");
+		}
+	}
 
-  ROS_WARN_STREAM("set freqency to " << freq << "Hz");
+	ROS_WARN_STREAM("set freqency to " << freq << "Hz");
 
-  ros::NodeHandle n;
+	ros::NodeHandle n;
 
-  ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+	ros::Publisher chatter_pub = n.advertise < std_msgs::String
+			> ("chatter", 1000);
 
-//  talkerClass talker;
-//  // Register service
-//  ros::ServiceServer server = n.advertiseService("talkerService", &talkerClass::updateTalkerName, &talker);
-//
+	talkerClass talker;
+	// Register service
+	ros::ServiceServer server = n.advertiseService("talkerService",
+			&talkerClass::updateTalkerName, &talker);
 
-  ros::Rate loop_rate(freq);
+	ros::Rate loop_rate(freq);
 
-  /**
-   * A count of how many messages we have sent. This is used to create
-   * a unique string for each message.
-   */
-  int count = 0;
-  while (ros::ok()) {
-    
-    std_msgs::String msg;
+	/**
+	 * A count of how many messages we have sent. This is used to create
+	 * a unique string for each message.
+	 */
+	int count = 0;
+	while (ros::ok()) {
 
-    std::stringstream ss;
-    ss << "hello world by ytlei" << count; //<< " talk:" << talker.getName();
-    msg.data = ss.str();
-    ROS_DEBUG_STREAM("Publish: " << msg.data.c_str());
+		std_msgs::String msg;
 
-    ROS_INFO("%s", msg.data.c_str());
+		std::stringstream ss;
+		ss << "hello world by ytlei" << count << " talk:" << talker.getName();
+		msg.data = ss.str();
+		ROS_DEBUG_STREAM("Publish: " << msg.data.c_str());
 
-   
-    chatter_pub.publish(msg);
+		ROS_INFO("%s", msg.data.c_str());
 
-    ros::spinOnce();
+		chatter_pub.publish(msg);
 
-    loop_rate.sleep();
-    ++count;
-  }
+		ros::spinOnce();
 
-
-  return 0;
+		loop_rate.sleep();
+		++count;
+	}
+	return 0;
 }

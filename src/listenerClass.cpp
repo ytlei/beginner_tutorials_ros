@@ -31,13 +31,12 @@
  *
  *  @author Yi-ting Lei
  *  @date   11/07/2017
-*/
+ */
 
 #include <ros/ros.h>
 #include <std_msgs/String.h>
 #include "listenerClass.hpp"
 
-
 void listenerClass::chatterCallback(const std_msgs::String::ConstPtr& msg) {
-    ROS_INFO_STREAM("I heard: " << msg->data.c_str());
+	ROS_INFO_STREAM("I heard: " << msg->data.c_str());
 }

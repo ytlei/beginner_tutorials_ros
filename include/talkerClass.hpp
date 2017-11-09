@@ -30,7 +30,7 @@
  *
  *  @author Yi-ting Lei
  *  @date   11/07/2017
-*/
+ */
 
 #ifndef INCLUDE_TALKERCLASS_HPP_
 #define INCLUDE_TALKERCLASS_HPP_
@@ -38,36 +38,36 @@
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <string>
-//#include "beginner_tutorials/talkerService.h"
-
+#include "beginner_tutorials/talkerService.h"
 
 class talkerClass {
- public:
-     /**
-      *   @brief  Callback function of talkerService which updates
-      *           the name in message published by Talker node on
-      *           chatter topic
-      *
-      *   @param  name string to be udpated in message
-                  published on chatter topic
-      *   @param  response string to client
-      *   @return true if update is successful, false otherwise
-     */
-//     bool updateTalkerName(
-//         beginner_tutorials::talkerService::Request &,
-//         beginner_tutorials::talkerService::Response &);
+public:
+	/**
+	 *   @brief  Callback function of talkerService which updates
+	 *           the name in message published by Talker node on
+	 *           chatter topic
+	 *
+	 *   @param  name string to be udpated in message
+	 published on chatter topic
+	 *   @param  response string to client
+	 *   @return true if update is successful, false otherwise
+	 */
+	bool updateTalkerName(beginner_tutorials::talkerService::Request &,
+			beginner_tutorials::talkerService::Response &);
 
-     /**
-      *   @brief  Get name to include in message published by Talker
-      *           node
-      *
-      *   @param  none
-      *   @return name string to be published on chatter topic
-     */
-     std::string getName(void) { return name; }
+	/**
+	 *   @brief  Get name to include in message published by Talker
+	 *           node
+	 *
+	 *   @param  none
+	 *   @return name string to be published on chatter topic
+	 */
+	std::string getName(void) {
+		return name;
+	}
 
- private:
-     std::string name;    ///< name in message published on chatter topic
+private:
+	std::string name;    ///< name in message published on chatter topic
 };
 
 #endif  // INCLUDE_TALKERCLASS_HPP_
