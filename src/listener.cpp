@@ -59,7 +59,7 @@ int main(int argc, char **argv) {
 
 	// Wait for service
 	timeoutCounter = ros::service::waitForService("talkerService", 60000);
-	//timeout after 60 seconds
+	// timeout after 60 seconds
 	if (timeoutCounter == false) {
 		ROS_WARN_STREAM("Waiting for talkerService timeout!");
 	} else {

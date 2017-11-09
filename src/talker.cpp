@@ -70,11 +70,10 @@ int main(int argc, char **argv) {
 	 */
 	int count = 0;
 	while (ros::ok()) {
-
 		std_msgs::String msg;
 
 		std::stringstream ss;
-		ss << "hello world by ytlei" << count << " talk:" << talker.getName();
+		ss << "hello world by: " << talker.getName() << " " << count;
 		msg.data = ss.str();
 		ROS_DEBUG_STREAM("Publish: " << msg.data.c_str());
 

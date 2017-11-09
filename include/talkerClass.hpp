@@ -41,7 +41,7 @@
 #include "beginner_tutorials/talkerService.h"
 
 class talkerClass {
-public:
+ public:
 	/**
 	 *   @brief  Callback function of talkerService which updates
 	 *           the name in message published by Talker node on
@@ -64,7 +64,7 @@ public:
 	 */
 	std::string getName(void);
 
-private:
+ private:
 	std::string name;    ///< name in message published on chatter topic
 };
 

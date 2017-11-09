@@ -31,28 +31,27 @@
  *
  *  @author Yi-ting Lei
  *  @date   11/07/2017
-*/
+ */
 
-#ifndef INCLUDE_LISTENER_CLASS_HPP_
-#define INCLUDE_LISTENER_CLASS_HPP_
+#ifndef INCLUDE_LISTENERCLASS_HPP_
+#define INCLUDE_LISTENERCLASS_HPP_
 
 #include <ros/ros.h>
 #include <std_msgs/String.h>
 
-
 /**
  *  @brief Class definition of Listener node
-*/
+ */
 class listenerClass {
  public:
-     /**
-      *   @brief  Callback function of Listener class which
-      *           subscibe to chatter topic
-      *
-      *   @param  message string received from chatter topic
-      *   @return none
-     */
-     void chatterCallback(const std_msgs::String::ConstPtr&);
+	/**
+	 *   @brief  Callback function of Listener class which
+	 *           subscibe to chatter topic
+	 *
+	 *   @param  message string received from chatter topic
+	 *   @return none
+	 */
+	void chatterCallback(const std_msgs::String::ConstPtr&);
 };
 
-#endif  // INCLUDE_LISTENER_CLASS_HPP_
+#endif  // INCLUDE_LISTENERCLASS_HPP_
