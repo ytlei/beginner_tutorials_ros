@@ -44,3 +44,7 @@ bool talkerClass::updateTalkerName(
 	ROS_INFO_STREAM("Sending response " << resp.resp << " to client");
 	return true;
 }
+
+std::string talkerClass::getName() {
+	return name;
+}

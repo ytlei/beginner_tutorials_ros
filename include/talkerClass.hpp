@@ -62,9 +62,7 @@ public:
 	 *   @param  none
 	 *   @return name string to be published on chatter topic
 	 */
-	std::string getName(void) {
-		return name;
-	}
+	std::string getName(void);
 
 private:
 	std::string name;    ///< name in message published on chatter topic
