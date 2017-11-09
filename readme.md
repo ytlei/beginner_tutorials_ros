@@ -1,4 +1,4 @@
-# ROS Tutorial Homework
+# ROS Homework_10
 
 ## Overview 
 
@@ -16,7 +16,7 @@ Next, open up a terminal and run
 
 	roscore
 
-Open a new terminal and run the talker code
+Open a new terminal and run the talker with argument for frequency set to 1
 
 	source ./devel/setup.bash
 	rosrun beginner_tutorials talker 1
@@ -42,6 +42,7 @@ Call talkerService to update name on chatter topic
 
 ```bash
 rosservice call /talkerService NewName
+```
 	
 ## Run - roslaunch
 
@@ -58,7 +59,7 @@ Open a new terminal to run launch file:
 $ cd ~/catkin_ws
 $ source ./devel/setup.bash
 $ roslaunch beginner_tutorials talkerandlistener.launch freq:=1
-	
+```
 
 ## Dependencies
 
