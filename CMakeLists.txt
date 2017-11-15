@@ -37,4 +37,33 @@ add_dependencies(talker beginner_tutorials_generate_messages_cpp)
 
 add_dependencies(listener beginner_tutorials_generate_messages_cpp)
 
+#############
+## Testing ##
+#############
 
+## Add gtest based cpp test target and link libraries
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_beginner_tutorials.cpp)
+# if(TARGET ${PROJECT_NAME}-test)
+#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
+# endif()
+
+## Add folders to be run by python nosetests
+# catkin_add_nosetests(test)
+
+if(CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+  add_rostest_gtest(
+  testTalker
+  test/testTalker.launch
+  test/testTalker.cpp
+  )
+  target_link_libraries(
+  testTalker
+  ${catkin_LIBRARIES}
+  )
+  add_dependencies(
+  testTalker
+  talker
+  ${catkin_EXPORTED_TARGETS}
+  )
+endif()
