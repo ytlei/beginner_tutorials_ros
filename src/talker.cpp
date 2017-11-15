@@ -35,6 +35,7 @@
 #include "std_msgs/String.h"
 #include "talkerClass.hpp"
 #include "beginner_tutorials/talkerService.h"
+#include <tf/transform_broadcaster.h>
 
 int main(int argc, char **argv) {
 	// default freq: 10 Hz
@@ -62,6 +63,10 @@ int main(int argc, char **argv) {
 	ros::ServiceServer server = n.advertiseService("talkerService",
 			&talkerClass::updateTalkerName, &talker);
 
+    	// TF broadcast
+    	static tf::TransformBroadcaster br;
+    	tf::Transform transform;
+
 	ros::Rate loop_rate(freq);
 
 	/**
@@ -80,6 +85,15 @@ int main(int argc, char **argv) {
 		ROS_INFO("%s", msg.data.c_str());
 
 		chatter_pub.publish(msg);
+
+		// broadcast the TF frame via /talker
+        	transform.setOrigin(tf::Vector3(2.0*sin(ros::Time::now().toSec()),
+                                        2.0*cos(ros::Time::now().toSec()),
+                                        0.0));
+
+        	transform.setRotation(tf::Quaternion(1, 0, 0, 0));
+        	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(),
+                                              		"world", "talker"));
 
 		ros::spinOnce();
 
