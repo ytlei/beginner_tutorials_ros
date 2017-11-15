@@ -29,7 +29,7 @@
  *
  *  @author Yi-ting Lei
  *  @date   11/13/2017
-*/
+ */
 
 #include <ros/ros.h>
 #include <ros/service_client.h>
@@ -37,25 +37,23 @@
 #include "talkerClass.hpp"
 #include "beginner_tutorials/talkerService.h"
 
-
 /**
  *   @brief  Verify if the talker service exists or not
  *
  *   @param  
  *   @return 
-*/
+ */
 
 TEST(TestSuite, testTalkerServiceExist) {
-    ros::NodeHandle n;
+	ros::NodeHandle n;
 
-    // Register client to the master
-    ros::ServiceClient client =
-        n.serviceClient<beginner_tutorials::talkerService>("talkerService");
+	// Register client to the master
+	ros::ServiceClient client =
+	n.serviceClient<beginner_tutorials::talkerService>("talkerService");
 
-    // Assert service to be ready in 1 second
-    ASSERT_TRUE(client.waitForExistence(ros::Duration(1)));
+	// Assert service to be ready in 1 second
+	ASSERT_TRUE(client.waitForExistence(ros::Duration(1)));
 }
-
 
 /**
  *   @brief  Verify the talker service. Make sure it accepts update to 
@@ -63,25 +61,25 @@ TEST(TestSuite, testTalkerServiceExist) {
  *
  *   @param  
  *   @return 
-*/
+ */
 TEST(TestSuite, testTalkerServiceUpdate) {
-    ros::NodeHandle n;
+	ros::NodeHandle n;
 
-    // Register client with the master
-    ros::ServiceClient client =
-        n.serviceClient<beginner_tutorials::talkerService>("talkerService");
+	// Register client with the master
+	ros::ServiceClient client =
+	n.serviceClient<beginner_tutorials::talkerService>("talkerService");
 
-    beginner_tutorials::talkerService::Request req;
-    beginner_tutorials::talkerService::Response resp;
+	beginner_tutorials::talkerService::Request req;
+	beginner_tutorials::talkerService::Response resp;
 
-    // input the name
-    req.name = "ytlei";
+	// input the name
+	req.name = "ytlei";
 
-    // Call service
-    EXPECT_TRUE(client.call(req, resp));
+	// Call service
+	EXPECT_TRUE(client.call(req, resp));
 
-    // check response
-    EXPECT_STREQ("OK", resp.resp.c_str());
+	// check response
+	EXPECT_STREQ("OK", resp.resp.c_str());
 }
 
 /*
@@ -89,10 +87,10 @@ TEST(TestSuite, testTalkerServiceUpdate) {
  *  
  *   @param  
  *   @return 0 when exit success
-*/
+ */
 
 int main(int argc, char** argv) {
-    ros::init(argc, argv, "testTalker");
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+	ros::init(argc, argv, "testTalker");
+	::testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
 }

@@ -43,13 +43,11 @@
 /**
  * This tutorial demonstrates simple receipt of messages over the ROS system.
  */
-void chatterCallback(const std_msgs::String::ConstPtr& msg) {
-	ROS_INFO("I heard: [%s]", msg->data.c_str());
-}
 
 int main(int argc, char **argv) {
 	bool timeoutCounter;
 	ros::init(argc, argv, "listener");
+	listenerClass listener;
 
 	ros::NodeHandle n;
 
@@ -60,10 +58,9 @@ int main(int argc, char **argv) {
 	// Wait for service
 	timeoutCounter = ros::service::waitForService("talkerService", 60000);
 	// timeout after 60 seconds
-	if (timeoutCounter == false) {
+	if (!timeoutCounter) {
 		ROS_WARN_STREAM("Waiting for talkerService timeout!");
 	} else {
-		// Create request & response objects
 		beginner_tutorials::talkerService::Request req;
 		beginner_tutorials::talkerService::Response resp;
 
@@ -79,8 +76,9 @@ int main(int argc, char **argv) {
 			ROS_ERROR_STREAM("Failed to set talker name");
 		}
 	}
-
-	ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
+	// Subscribe topic chatter
+	ros::Subscriber sub = n.subscribe("chatter", 1000,
+			&listenerClass::chatterCallback, &listener);
 
 	if (sub) {
 		ROS_DEBUG_STREAM("Subscribing done");
