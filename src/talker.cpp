@@ -30,12 +30,13 @@
  *   @author	Yi-ting Lei
  *   @date	2017/10/31
  */
+
 #include <sstream>
+#include "talkerClass.hpp"
+#include <tf/transform_broadcaster.h>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-#include "talkerClass.hpp"
 #include "beginner_tutorials/talkerService.h"
-#include <tf/transform_broadcaster.h>
 
 int main(int argc, char **argv) {
 	// default freq: 10 Hz

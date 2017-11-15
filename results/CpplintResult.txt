@@ -1,6 +1,9 @@
 Done processing ./include/talkerClass.hpp
 Done processing ./include/listenerClass.hpp
 Done processing ./src/listenerClass.cpp
+./src/talker.cpp:36:  Found C system header after other header. Should be: talker.h, c system, c++ system, other.  [build/include_order] [4]
 Done processing ./src/talker.cpp
 Done processing ./src/listener.cpp
 Done processing ./src/talkerClass.cpp
+Done processing ./test/testTalker.cpp
+Total errors found: 1
