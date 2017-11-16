@@ -21,8 +21,7 @@
         pkg="rosbag"
         name="record"
         type="record"
-        args="-a -o /home/yitinglei/catkin_ws/src/beginner_tutorials/results/"  	  
-        output="screen"
+        args="-a -O result.bag"
         if="$(arg enable_record)"
     />
 </launch>
