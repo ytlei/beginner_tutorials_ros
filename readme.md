@@ -1,10 +1,22 @@
-# ROS Homework_10
+# ROS Homework_11
 
 ## Overview 
 
 This ROS program creates a means of communication by setting up two types of nodes, a publisher and subscriber node. The publisher or "talker" node will send information that will be received and viewed by the subscriber or "listener" node. Updated with a service and launch file. 
 
-## Build/Run Steps
+## Build
+
+```bash
+$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/src
+$ catkin_init_workspace
+$ git clone --recursive https://github.com/ytlei/beginner_tutorials_ros/edit -b Week11_HW
+$ cd ~/catkin_ws/
+$ catkin_make
+```
+
+## Run Steps
+
 
 To execute the program, first build the program by running 
 
@@ -60,6 +72,101 @@ $ cd ~/catkin_ws
 $ source ./devel/setup.bash
 $ roslaunch beginner_tutorials talkerandlistener.launch freq:=1
 ```
+
+## Run - Call Service
+
+Make sure talker & listener nodes are already running
+
+Open a new terminal to check if talkerService is available
+
+```bash
+$ cd ~/catkin_ws
+$ source ./devel/setup.bash
+$ rosservice list
+```
+you sould see all the service running
+
+Call talkerService to update name on chatter topic
+
+```bash
+rosservice call /talkerService John
+```
+
+On Talker node terminal, the output should update the name
+On Listener node terminal, the name should also be updated
+
+
+## TF
+
+Talker node broadcasts a TF frame /talker with reference to /world frame.  
+
+To inspect TF frame published by /talker:
+
+In a new terminal
+```bash
+cd ~/catkin_ws
+source ./devel/setup.bash
+rosrun beginner_tutorials talker
+```
+
+In another terminal
+
+```bash
+cd ~/catkin_ws
+source ./devel/setup.bash
+rosrun tf tf_echo /world /talker
+```
+
+you should see the Translation and Rotation showing on screen
+
+TF tree can be viewed using
+
+rqt_tf_tree
+
+```bash
+rosrun rqt_tf_tree rqt_tf_tree
+```
+
+## Test - rostest
+
+Level 2 integration test implemented by gtest can be run on talker service as follow:
+
+```bash
+cd ~/catkin_ws
+catkin_make tests
+source ./devel/setup.bash
+rostest beginner_tutorials testTalker.launch
+```
+
+## Record/Play - rosbag
+
+rosbag is included in talkerandlistener.launch to record all topics.
+
+To enable recording:
+
+```bash
+cd ~/catkin_ws
+source ./devel/setup.bash
+roslaunch beginner_tutorials tutorial.launch enable_record:=true freq:=1
+```
+
+To play rosbag recording:
+
+In a new terminal
+```bash
+cd ~/catkin_ws
+source ./devel/setup.bash
+rosrun beginner_tutorials listener
+```
+
+Open another terminal
+```bash
+cd ~/.ros/
+rosbag play result.bag
+```
+
+Listner terminal should output messages recorded by rosbag
+
 
 ## Dependencies
 
